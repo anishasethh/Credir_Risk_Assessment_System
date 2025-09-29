@@ -20,7 +20,7 @@ def preprocessing(X, y):
     X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=42)
 
     target_enc_cols = [
-        'CNT_CHILDREN','CNT_FAM_MEMBERS','Age',
+        'CNT_CHILDREN','CNT_FAM_MEMBERS',
         'total_credits','active_credits','closed_credits','overdue_credits'
     ]
     for col in target_enc_cols:
@@ -33,7 +33,7 @@ def preprocessing(X, y):
 
     
     numeric_cols = ['AMT_INCOME_TOTAL','AMT_CREDIT','AMT_GOODS_PRICE','total_overdue','total_debt','total_credit',
-                    'mean_credit_duration','enddate_diff_sum','Employment_dur','active/total','closed/total',
+                    'mean_credit_duration','enddate_diff_sum','Employment_dur','Age','active/total','closed/total',
                     'overdue/total','prop_credit','prop_annuity','prop_goods_pr','credit_paid','debt_overdue']
     
     categorical_cols = ['NAME_INCOME_TYPE','NAME_FAMILY_STATUS','NAME_CONTRACT_TYPE',
@@ -145,5 +145,6 @@ def xgb(X_train, X_test, y_train, y_test):
         mlflow.log_metric("roc_auc", roc_auc_score(y_test, y_prob)) 
     
     return xgb
+
 
 
